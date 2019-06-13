@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   get '/signup', to:'users#new'
   
-  post 'signup', to:"users#create"
+  get '/'
 
   root 'static_pages#home'
 
