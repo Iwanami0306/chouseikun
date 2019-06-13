@@ -1,0 +1,9 @@
+class EvevtsController < ApplicationController
+  def new
+  end
+  def create    
+  end
+  def show
+    @event = Events.find(params[:id])
+  end
+end

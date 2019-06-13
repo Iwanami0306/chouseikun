@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+  
+  post '/event_create', to:'events#create'
+  
+  get '/event_create', to:'events#new'
+
+  resources :events
 
   resources :users
   
   get '/signup', to:'users#new'
   
-  post 'signup', to:"users#create"
+  post '/signup', to:"users#create"
 
   root 'static_pages#home'
 
