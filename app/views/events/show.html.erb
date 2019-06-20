@@ -7,3 +7,15 @@
 <%= date.choice %>
 <br>
 <% end %>
+<% @joins.each do |join|%>
+<%= join.name %>
+<pr>
+<% end %>
+
+ <div class="row">
+    <aside class="col-md-4">
+      <section class="micropost_form">
+        <%= render 'shared/join_form' %>
+      </section>
+    </aside>
+  </div>

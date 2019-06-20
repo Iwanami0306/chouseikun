@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   before_action :correct_user, only: :destroy
   def show
     @event = Event.find_by(id: params[:id])
-    @event_dates = EventDate.find_by(event_id: params[:id])
+    @join = Join.new
+    @joins = Join.where(event_id: params[:id])
   end
 
   def create

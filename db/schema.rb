@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190620101626) do
+ActiveRecord::Schema.define(version: 20190620112208) do
 
   create_table "event_dates", force: :cascade do |t|
     t.text "choice"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20190620101626) do
     t.index ["id"], name: "sqlite_autoindex_events_1", unique: true
     t.index ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "joins", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "event_id"
+    t.index ["created_at"], name: "index_joins_on_event_id_and_created_at"
   end
 
   create_table "users", force: :cascade do |t|

@@ -10,7 +10,8 @@ class Event < ApplicationRecord
   validates :time, length:  {maximum: 255}, presence: true
 
   has_many :event_dates, foreign_key: :event_id, dependent: :destroy
-       
+  has_many :joins, foreign_key: :event_id, dependent: :destroy
+  
   def generate_token
     self.id = loop do
       random_token = SecureRandom.uuid
