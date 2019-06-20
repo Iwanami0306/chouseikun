@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   after_save  :build_event_dates_from_time
   belongs_to :user
   default_scope -> {order(created_at: :desc)}
-  validates :id, unique: true, presence: true
+  validates :id, uniqueness: true, presence: true
   validates :name, presence: true, length: {maximum: 50}
   validates :memo, length: {maximum: 255}
   validates :time, length:  {maximum: 255}, presence: true
