@@ -1,13 +1,10 @@
-<% provide(:title, @event.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-	<%= @event.name %>
-      </h1>
-      <h1>	  
-	<%= @event.memo %>
-      </h1>
-    </section>
-  </aside>
-</div>
+<% provide(:title,@event.name) %>
+<%= @event.name %>
+
+<br>
+<%= @event.memo %>
+<br>
+<% @choices.each do |choice|%>
+<%= choice %>
+<br>
+<% end %>
