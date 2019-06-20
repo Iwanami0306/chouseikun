@@ -1,10 +1,9 @@
 <% provide(:title,@event.name) %>
 <%= @event.name %>
-
 <br>
 <%= @event.memo %>
 <br>
-<% @choices.each do |choice|%>
-<%= choice %>
+<% @event.event_dates.each do |date|%>
+<%= date.choice %>
 <br>
 <% end %>

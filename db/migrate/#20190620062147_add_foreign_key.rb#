@@ -1,0 +1,6 @@
+class AddForeignKey < ActiveRecord::Migration[5.1]
+  def change
+    foreign_key: faise
+  end
+  add_foreign_key :event_dates, :
+end

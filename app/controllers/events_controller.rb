@@ -4,8 +4,9 @@ class EventsController < ApplicationController
   before_action :correct_user, only: :destroy
   def show
     @event = Event.find_by(id: params[:id])
-    @choices = @event.time.split(/\R/)
+    @event_dates = EventDate.find_by(event_id: params[:id])
   end
+
   def create
     @event = current_user.events.build(event_params)
     if @event.save
