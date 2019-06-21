@@ -4,6 +4,16 @@
     <%= f.label "name" %>
     <%= f.text_field :name %>
     <%= hidden_field_tag :event_id, @event.id %>
+    
+    <% @answer.each do |ans|%>
+     <%= f.fields_for ans.event_date.choice do |n| %>
+      <%= n.label "#{ans.event_date.choice}" %>
+      <%= n.radio_button :feeling,:OK %>
+      <%= n.radio_button :feeling,:Neither, :checked => true %>
+      <%= n.radio_button :feeling,:NG %>
+     <% end %>
+    <% end %>  
+					    
   </div>
   <%= f.submit "入力", class: "btn btn-primary" %>
 <% end %>

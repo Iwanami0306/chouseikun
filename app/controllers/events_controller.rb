@@ -4,8 +4,14 @@ class EventsController < ApplicationController
   before_action :correct_user, only: :destroy
   def show
     @event = Event.find_by(id: params[:id])
+    @event_dates = @event.event_dates
+    @answer = []
+    @event_dates.each do |event_date|
+      @answer.push(event_date.answers.build)
+    end
     @join = Join.new
     @joins = Join.where(event_id: params[:id])
+    @answers = Answer.where("join_id = #{@joins.ids} and event_id = #{@event.event_dates.ids}")
   end
 
   def create

@@ -18,7 +18,7 @@ users = User.order(:created_at).take(6)
   memo = Faker::Lorem.sentence(5)
   time = "10/10\r10/11\r10/12"
   users.each do |user|
-    e.user.events.create!(name: name, memo: memo, time: time)
+    e=user.events.create!(name: name, memo: memo, time: time)
     e.event_dates.create!(choice:"10/10")
     e.event_dates.create!(choice:"10/11")
     e.event_dates.create!(choice:"10/12")

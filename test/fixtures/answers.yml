@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  feeling: 
+  join: one
+  event_date: one
+
+two:
+  feeling: 
+  join: two
+  event_date: two

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190620112208) do
+ActiveRecord::Schema.define(version: 20190620234853) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer "feeling"
+    t.integer "join_id"
+    t.integer "event_date_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_date_id"], name: "index_answers_on_event_date_id"
+    t.index ["join_id"], name: "index_answers_on_join_id"
+  end
 
   create_table "event_dates", force: :cascade do |t|
     t.text "choice"

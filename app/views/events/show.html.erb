@@ -1,21 +1,27 @@
 <% provide(:title,@event.name) %>
-<%= @event.name %>
+<h3><%= @event.name %></h3>
+<h4><%= @event.memo %></h4>
 <br>
-<%= @event.memo %>
-<br>
-<% @event.event_dates.each do |date|%>
-<%= date.choice %>
-<br>
-<% end %>
 <% @joins.each do |join|%>
-<%= join.name %>
-<pr>
+ <%= join.name %>
+ <% join.answers.each do |ans| %>
+ <% if ans.feeling == "OK" %>
+◯
+ <% elsif ans.feeling == "Neither"%>
+△
+ <% elsif ans.feeling == "NG" %>
+×
+ <% end %>
+<% end %>
+<br>
 <% end %>
 
- <div class="row">
+  <div class="row">
     <aside class="col-md-4">
-      <section class="micropost_form">
+      <section class="event_form">
         <%= render 'shared/join_form' %>
       </section>
     </aside>
   </div>
+
+
