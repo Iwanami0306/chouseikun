@@ -1,19 +1,28 @@
 <%= form_for(@join) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
+
+    <div class="row">
+    <aside class="col-md-8">
     <%= f.label "name" %>
     <%= f.text_field :name %>
     <%= hidden_field_tag :event_id, @event.id %>
-    
+    </aside>
+    </div>
     <% @answer.each do |ans|%>
      <%= f.fields_for ans.event_date.choice do |n| %>
       <%= n.label "#{ans.event_date.choice}" %>
-      <%= n.radio_button :feeling,:OK %>
-      <%= n.radio_button :feeling,:Neither, :checked => true %>
-      <%= n.radio_button :feeling,:NG %>
+      <div class="toggle-buttons">
+      <label><%= n.radio_button :feeling,:OK %><span class="button_">&#9711; </span></label>
+      <label><%= n.radio_button :feeling,:Neither, :checked => true %>
+	<span class="button_"> &#9651;</span></label>
+      <label><%= n.radio_button :feeling,:NG %><span class="button_">&#10005; </span></label>
+</div>	
      <% end %>
-    <% end %>  
-					    
-  </div>
-  <%= f.submit "入力", class: "btn btn-primary" %>
+     <% end %>
+     <br>
+    <div class="row">
+     <aside class="col-md-8">
+       <%= f.submit "追加", class: "btn btn-danger" %>
+     </aside>
+    </div>
 <% end %>

@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     end
     @join = Join.new
     @joins = Join.where(event_id: params[:id])
-    @answers = Answer.where("join_id = #{@joins.ids} and event_id = #{@event.event_dates.ids}")
+    @answers = Answer.where("join_id = #{@joins.ids} and event_date_id = #{@event.event_dates.ids}")
   end
 
   def create
