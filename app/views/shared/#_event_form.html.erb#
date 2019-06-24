@@ -1,0 +1,21 @@
+<%= form_for(@event) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label "イベント名"%>
+    <h6>(例)忘年会、打合せなど</h6>
+    <%= f.text_field :name%>
+    <%= f.label "メモ(任意)"%>
+    <h6>(例)飲み会の日程調整をしましょう！〆切○日厳守！</h6>
+    <%= f.text_area :memo %>
+    <%= f.label "候補日程" %>
+    <h6>(例)</h6>
+    <h6>8/7(月) 20:00~</h6>
+    <h6>8/8(火) 20:00~</h6>
+    <h6>8/9(水) 21:00~</h6>
+    </br>
+    <%= f.text_area :time, placeholder: "※候補の区切りを改行で判断します。"%>
+  
+
+  </div>
+  <%= f.submit "作成", class: "btn btn-danger" %>
+<% end %>

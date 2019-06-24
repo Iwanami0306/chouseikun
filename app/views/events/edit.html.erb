@@ -1,0 +1,39 @@
+
+<% provide(:title, "イベント編集")%>
+<h3>イベント編集</h3>
+<%= link_to "イベントページへ戻る", event_path(@event)%>
+ <div class="row">
+    <aside class="col-md-4">
+      <section class="event_form">
+
+	<%= form_for(@event) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label "イベント名"%>
+    <%= f.text_field :name%>
+    <%= f.label "メモ(任意)"%>
+    <%= f.text_area :memo %>
+  </div>
+  <br>
+  <%= f.label "削除する候補日(チェックで削除)"%>
+  <br>
+    <% @event.event_dates.each do |event_date|%>
+     <%= f.fields_for event_date.choice do |n| %>
+     <span>
+       <%= n.label "#{event_date.choice}" %>
+       <%= n.check_box :delete,{}%>
+     </span>
+     <% end %>
+    <% end %>
+   <br>
+
+   <%= f.label "追加する候補日"%>
+   <%=f.fields_for "new_choices" do |n|%>
+    <%= n.text_area :time, placeholder: "※候補の区切りを改行で判断します。"%>
+   <% end %>
+    <%= f.submit "変更", class: "btn btn-danger" %>
+<% end %>
+        
+      </section>
+    </aside>
+  </div>

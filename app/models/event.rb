@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   self.primary_key = "id"
-  before_save :generate_token
-  after_save  :build_event_dates_from_time
+  before_create :generate_token
+  after_create  :build_event_dates_from_time
   belongs_to :user
   default_scope -> {order(created_at: :desc)}
   validates :id, uniqueness: true
@@ -22,7 +22,7 @@ class Event < ApplicationRecord
   def build_event_dates_from_time
     if self.time
       time.each_line do |line|
-        event_dates.create(choice: line.strip,event_id:self.id)
+        EventDate.create(choice: line.strip,event_id:self.id)
       end
     end
   end

@@ -1,0 +1,53 @@
+<% provide(:title,"出席変更") %>
+<h3>出席変更</h3>
+ <div class="col-xs-6 col-xs-offset-4">
+<%= form_for(@join) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="row">
+    <aside class="col-md-8">
+    <%= f.label "name" %>
+    <%= f.text_field :name %>
+    <%= hidden_field_tag :event_id, @join.event.id %>
+    </aside>
+    </div>
+    <% @join.event.event_dates.each do |event_date|%>
+     <%= f.fields_for event_date.choice do |n| %>
+      <%= n.label "#{event_date.choice}" %>
+      <div class="toggle-buttons">
+	<% ans = Answer.find_by(join_id: @join.id, event_date_id: event_date.id)  %>
+       <% if ans  %>
+	<% if ans.feeling=="OK"%>	
+      <label><%= n.radio_button :feeling,:OK, :checked=>true %><span class="button_">&#9711; </span></label>
+      <label><%= n.radio_button :feeling,:Neither %>
+        <span class="button_"> &#9651;</span></label>
+      <label><%= n.radio_button :feeling,:NG %><span class="button_">&#10005; </span></label>
+       <% elsif ans.feeling=="NG" %>
+      <label><%= n.radio_button :feeling,:OK %><span class="button_">&#9711; </span></label>
+      <label><%= n.radio_button :feeling,:Neither %>
+        <span class="button_"> &#9651;</span></label>
+      <label><%= n.radio_button :feeling,:NG, :checked=>true %><span class="button_">&#10005; <span></label>
+      <% elsif ans.feeling=="Neither" %>
+      <label><%= n.radio_button :feeling,:OK %><span class="button_">&#9711; </span></label>
+      <label><%= n.radio_button :feeling,:Neither, :checked=>true %>
+        <span class="button_"> &#9651;</span></label>
+      <label><%= n.radio_button :feeling,:NG %><span class="button_">&#10005; <span></label>
+      <% end %>
+      <% else %>
+       <label><%= n.radio_button :feeling,:OK %><span class="button_">&#9711; </span></label>
+      <label><%= n.radio_button :feeling,:Neither, :checked=>true %>
+        <span class="button_"> &#9651;</span></label>
+      <label><%= n.radio_button :feeling,:NG %><span class="button_">&#10005; <span></label>
+      <% end %>
+
+</div>
+     <% end %>
+     <% end %>
+     <br>
+    <div class="row">
+     <aside class="col-md-8">
+       <%= f.submit "追加", class: "btn btn-primary" %>
+     </aside>
+    </div>
+<% end %>
+</div>

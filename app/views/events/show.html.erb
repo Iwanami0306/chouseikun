@@ -1,6 +1,8 @@
 <% provide(:title,@event.name) %>
 <h3><%= @event.name %></h3>
 <h4><%= @event.memo %></h4>
+<%= link_to "イベント編集", edit_event_path(@event)%>
+<br>
 <br>
 <h5>ただいま<%=@event.joins.count%>人が回答</h5>
 <div class="table-responsive">
@@ -14,7 +16,7 @@
     <th>&#10005;</th>
 
     <% @joins.each do |join| %>
-    <th><%= join.name %></th>
+    <th><%= link_to join.name,edit_join_path(join) %></th>
     <% end %>
   </tr>
   <% @event_dates.each do |event_date|%>
@@ -31,21 +33,18 @@
     <td><%= event_date.count_ok %></td>
     <td><%= event_date.count_neither %></td>
     <td><%= event_date.count_ng %></td>
-    <% event_date.answers.each do |ans|%>
-<% if ans.feeling == "OK" %>
-    <td>
-&#9711;
-    </td>
-<% elsif ans.feeling == "Neither"%>
-    <td>
-&#9651; 
-    </td>
-<% elsif ans.feeling == "NG" %>
-    <td>
-&#10005;
-    </td>
-<% end %>
+    <% @event.joins.each do |join|%>
+    <% ans = Answer.find_by(event_date_id: event_date.id, join_id: join.id)%>
+    <% if ans.nil? %>
+     <td>(未記入)</td>
+    <% elsif ans.feeling == "OK" %>
+     <td>&#9711;</td>
+    <% elsif ans.feeling == "Neither"%>
+     <td>&#9651;</td>
+    <% elsif ans.feeling == "NG" %>
+     <td>&#10005;</td>
     <% end %>
+<% end %>
     </tr>
   <% end %>
 </table>
