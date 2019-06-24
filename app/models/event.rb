@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-  self.primary_key = "id"
   before_create :generate_token
   after_create  :build_event_dates_from_time
   belongs_to :user
@@ -11,11 +10,11 @@ class Event < ApplicationRecord
 
   has_many :event_dates, foreign_key: :event_id, dependent: :destroy
   has_many :joins, foreign_key: :event_id, dependent: :destroy
-  
+
   def generate_token
-    self.id = loop do
+    self.uuid = loop do
       random_token = SecureRandom.uuid
-      break random_token unless self.class.exists?(id: random_token)
+      break random_token unless self.class.exists?(uuid: random_token)
     end
   end
 

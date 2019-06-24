@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190620234853) do
+ActiveRecord::Schema.define(version: 20190624063311) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "feeling"
@@ -26,17 +26,17 @@ ActiveRecord::Schema.define(version: 20190620234853) do
     t.text "choice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "event_id"
+    t.integer "event_id"
   end
 
-  create_table "events", id: :string, force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.string "name"
+    t.text "memo"
+    t.text "time"
+    t.string "uuid"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "memo"
-    t.integer "user_id"
-    t.text "time"
-    t.index ["id"], name: "sqlite_autoindex_events_1", unique: true
     t.index ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20190620234853) do
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "event_id"
+    t.integer "event_id"
     t.index ["created_at"], name: "index_joins_on_event_id_and_created_at"
   end
 

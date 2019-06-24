@@ -1,0 +1,6 @@
+class RemoveColumnEvents < ActiveRecord::Migration[5.1]
+  def change
+    remove_column :joins, :event_id, :string
+    add_column :joins, :event_id, :int
+  end
+end
