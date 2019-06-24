@@ -1,0 +1,5 @@
+class RemoveEventFromEventDate < ActiveRecord::Migration[5.1]
+  def change
+    remove_reference :event_dates, :event, foreign_key: true
+  end
+end
