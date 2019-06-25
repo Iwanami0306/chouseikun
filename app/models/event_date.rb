@@ -3,7 +3,7 @@ class EventDate < ApplicationRecord
   validates :event_id, presence: true
   validates :choice, presence: true, length: {maximum:15}
   has_many :answers, dependent: :destroy
-
+  default_scope -> {order(created_at: :asc)}
   attr_accessor :count_ng, :count_neither, :count_ok, :rate
 
   def count_feeling
