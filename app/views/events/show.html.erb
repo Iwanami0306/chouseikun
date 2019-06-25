@@ -1,7 +1,9 @@
 <% provide(:title,@event.name) %>
 <h3><%= @event.name %></h3>
 <h4><%= @event.memo %></h4>
-<%= link_to "イベント編集", edit_event_path(@event)%>
+<% if logged_in? %>
+  <%= link_to "イベント編集", edit_event_path(@event)%>
+<% end %>
 <br>
 <br>
 <h5>ただいま<%=@event.joins.count%>人が回答</h5>

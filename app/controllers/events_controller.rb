@@ -1,7 +1,7 @@
 # coding: utf-8
 class EventsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy, :edit, :update]
+  before_action :correct_user, only: [:destroy, :edit, :update]
   def show
     @event = Event.find_by(id: params[:id])
     @event_dates = @event.event_dates
