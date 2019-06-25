@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190624075028) do
+ActiveRecord::Schema.define(version: 20190625031904) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "feeling"
-    t.integer "join_id"
     t.integer "event_date_id"
+    t.integer "join_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_date_id"], name: "index_answers_on_event_date_id"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20190624075028) do
 
   create_table "event_dates", force: :cascade do |t|
     t.text "choice"
+    t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_id"
     t.index ["event_id"], name: "index_event_dates_on_event_id"
   end
 
@@ -44,10 +44,9 @@ ActiveRecord::Schema.define(version: 20190624075028) do
 
   create_table "joins", force: :cascade do |t|
     t.text "name"
+    t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event_id"
-    t.index ["created_at"], name: "index_joins_on_event_id_and_created_at"
     t.index ["event_id"], name: "index_joins_on_event_id"
   end
 

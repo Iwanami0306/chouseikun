@@ -7,3 +7,4 @@ class Answer < ApplicationRecord
   validates :join_id, presence: true
   validates :feeling, presence:true, inclusion: {in: Answer.feelings.keys}
 end
+

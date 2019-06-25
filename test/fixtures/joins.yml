@@ -2,8 +2,8 @@
 
 one:
   name: MyText
-  event_date: one
+  event: one
 
 two:
   name: MyText
-  event_date: two
+  event: two

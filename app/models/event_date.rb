@@ -16,4 +16,5 @@ class EventDate < ApplicationRecord
     all_count = self.count_ng + self.count_neither + self.count_ok
     self.rate = (all_count == 0) ? 0 : sum /all_count
   end
+
 end

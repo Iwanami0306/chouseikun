@@ -1,5 +1,0 @@
-class RemoveIndex < ActiveRecord::Migration[5.1]
-  def change
-    remove_index :joins, column: [add_index :joins, [:event_id,:created_at]]
-  end
-end
